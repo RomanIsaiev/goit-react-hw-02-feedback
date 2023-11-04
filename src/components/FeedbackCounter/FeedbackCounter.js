@@ -11,28 +11,10 @@ export class FeedbackCounter extends Component {
     bad: 0,
   };
 
-  updateStateGood = () => {
-    this.setState(prevState => {
-      return {
-        good: prevState.good + 1,
-      };
-    });
-  };
-
-  updateStateNeutral = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-
-  updateStateBad = () => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad + 1,
-      };
-    });
+  onClickFeedback = option => {
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
   };
 
   countTotalFeedback() {
@@ -56,9 +38,8 @@ export class FeedbackCounter extends Component {
       <div>
         <Section title={'Please leave feedback'}>
           <FeedbackOptions
-            optionsOnGood={this.updateStateGood}
-            optionsOnNeutral={this.updateStateNeutral}
-            optionsOnBad={this.updateStateBad}
+            options={Object.keys(this.state)}
+            onClickFeedback={this.onClickFeedback}
           />
         </Section>
         <Section title={'Statistics'}>

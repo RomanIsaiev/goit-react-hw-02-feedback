@@ -1,21 +1,17 @@
 import { FeedbackButtonFlex, FeedbackButton } from './FeedbackOptions.styled';
 
-export const FeedbackOptions = ({
-  optionsOnGood,
-  optionsOnNeutral,
-  optionsOnBad,
-}) => {
+export const FeedbackOptions = ({ options, onClickFeedback }) => {
   return (
     <FeedbackButtonFlex>
-      <FeedbackButton onClick={optionsOnGood} $variant="good">
-        Good
-      </FeedbackButton>
-      <FeedbackButton onClick={optionsOnNeutral} $variant="neutral">
-        Neutral
-      </FeedbackButton>
-      <FeedbackButton onClick={optionsOnBad} $variant="bad">
-        Bad
-      </FeedbackButton>
+      {options.map(option => (
+        <FeedbackButton
+          key={option}
+          onClick={() => onClickFeedback(option)}
+          $variant={option}
+        >
+          {option}
+        </FeedbackButton>
+      ))}
     </FeedbackButtonFlex>
   );
 };
